@@ -1,45 +1,52 @@
+@model List<Pjt_Software.Models.Servico>
+
 @{
-    ViewData["Title"] = "Cadastro de Colaboradores";
+    ViewData["Title"] = "Lista de Serviços";
 }
 
-<div class="texte-center">
-    
-    <h1 class= "display-4">Cadastro de Colaboradores</h1>
+<link rel="stylesheet" href="~/css/stylecrud.css" asp-append-version="true" />
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a role="button" class="btn btn-primary">Adicionar novo Colaborador</a>
+<div class="container">
+    <div class="funcionario-container">
+        <h3>Lista de Serviços</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if (Model != null && Model.Any())
+              {
+                @foreach (var servico in Model)
+                {
+                    <tr>
+                        <td>@servico.Id</td>
+                        <td>@servico.Nome</td>
+                        <td>@servico.Descricao</td>
+                        <td>@servico.Preco.ToString("C")</td>
+                        <td>
+                            <a asp-controller="Servicos" asp-action="Edit" asp-route-id="@servico.Id" class="btn btn-primary">Editar</a>
+                            <a asp-controller="Servicos" asp-action="Delete" asp-route-id="@servico.Id" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                }
+              }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">Nenhum servico cadastrado.</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <div>    
+            <a asp-controller="Servicos" asp-action="Create" class="btn btn-success">Adicionar Novo Serviço</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
     </div>
-
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Data de nascimento</th>
-            <th scope="col">Cargo</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Salario</th>
-        </tr>
-    </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Victor Diniz Perri Paoluzzi</td>
-                <td>123.456.789-10</td>
-                <td>29/05/2006</td>
-                <td>Dono</td>
-                <td>31 98205-0965</td>
-                <td>sao lazaro</td>
-                <td>5000</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" class="btn btn-primary">Editar</a>
-                        <a role="button" class="btn btn-danger">Deletar</a>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>

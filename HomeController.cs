@@ -1,11 +1,17 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Projeto_de_Software.Models;
+using Pjt_Software.Models;
 
-namespace Projeto_de_Software.Controllers;
+namespace Pjt_Software.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
 
     public IActionResult Index()
     {
@@ -22,5 +28,4 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
 }

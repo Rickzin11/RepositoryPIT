@@ -1,0 +1,16 @@
+@model Pjt_Software.Models.Servico
+
+<link rel="stylesheet" href="~/css/styledelete.css" asp-append-version="true" />
+
+<div class="container">
+    <h1 class="title">@ViewData["Title"]</h1>
+
+    <div class="confirmation-message">
+        <p>Tem certeza que deseja excluir este Serviço <strong>@Model.Nome</strong>?</p>
+    </div>
+
+    <form method="POST" class="confirmation-form">
+        <button class="btn btn-danger" type="submit">Excluir</button>
+        <a asp-controller="Servicos" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
